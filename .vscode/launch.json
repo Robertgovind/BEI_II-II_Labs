@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/govin/Desktop/BEI_II-II_Labs/DSA/practice",
-      "program": "c:/Users/govin/Desktop/BEI_II-II_Labs/DSA/practice/build/Debug/outDebug",
+      "cwd": "c:/Users/govin/Desktop/BEI_II-II_Labs/Numerical_Method",
+      "program": "c:/Users/govin/Desktop/BEI_II-II_Labs/Numerical_Method/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
