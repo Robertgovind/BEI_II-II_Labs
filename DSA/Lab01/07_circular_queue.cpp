@@ -18,8 +18,8 @@ void Enqueue(int data){  //enqueue
             }
             Queue[rear]=data;
         }
-        }
-
+     }
+        
 
 void Dequeue(){  //dequeue
     if(front==-1){
@@ -68,7 +68,8 @@ int main(){
     printQueueStatus();
     Enqueue(1);
     printQueueStatus();
-   // Enqueue(5);
+
+    
     //printQueueStatus();
     return 0;
 }

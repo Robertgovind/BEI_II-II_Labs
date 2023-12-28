@@ -39,13 +39,13 @@ int main(){
     Dequeue();
     Enqueue(4);
     Dequeue();
-    // Enqueue(5);
-    // Enqueue(4);
-    // Enqueue(9);
-    // Enqueue(8);
-    // Enqueue(2);
-    // printQueueStatus();
-    // Dequeue();
-    // printQueueStatus();
+    Enqueue(5);
+    Enqueue(4);
+    Enqueue(9);
+    Enqueue(8);
+    Enqueue(2);
+    printQueueStatus();
+    Dequeue();
+    printQueueStatus();
     return 0;
 }
