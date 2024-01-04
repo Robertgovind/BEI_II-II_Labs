@@ -96,6 +96,13 @@ void convert(string infix,string postfix){
 
     
 }
+
+void reverseString(string str){
+    int s=0,e=str.length()-1;
+    while(s<=e){
+        swap(str[s++],str[e--]);
+    }
+}
 int main(){
     string infix;
     string postfix="";
@@ -103,7 +110,10 @@ int main(){
     cin>>infix;
     tos+=1;
     stack[tos]='&';
+    reverseString(infix);
     convert(infix,postfix);
-    cout<<postfix;
+    reverseString(postfix);
+    for(int i=postfix.length()-1;i>=1;i--)
+    cout<<postfix[i];
     return 0;
 }
