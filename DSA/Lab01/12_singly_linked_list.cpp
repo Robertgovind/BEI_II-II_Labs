@@ -69,7 +69,78 @@ void insertAtPos(int pos){
 }
 
 //DELETION OPERATIONS
+void deleteFromFirst(){
+    struct node *temp;
+    temp=head;
+    if(head==NULL){
+        cout<<"List underflow!"<<endl;
+        return;
+    }
+    else if(temp->next == NULL){
+        head=NULL;
+        free(temp);
+    }
+    else{
+        head=head->next;
+        cout<<"Deleted : "<<temp->info<<endl;
+        free(temp);
+    }
 
+}
+
+void deleteFromLast(){
+    struct node *temp,*delLocation;
+    
+    if(head == NULL){
+        cout<<"List underflow!"<<endl;
+        return;
+    }
+    else if(head->next == NULL){
+        cout<<"Deleted :"<<head->info<<endl;
+        head=NULL;
+        free(head);
+    }
+    else{
+        temp=head;
+        while(temp->next != NULL){
+            delLocation=temp;
+            temp=temp->next;
+        }
+        delLocation->next=NULL;
+        cout<<"Deleted :"<<temp->info<<endl;
+        free(temp);
+    }
+}
+
+void deleteFromPosition(int pos){
+    struct node *temp,*delLocation;
+    if(head==NULL){
+        cout<<"List underflow!"<<endl;
+        return ;
+    }
+    else if (head->next == NULL){
+        head=NULL;
+        free(head);
+    }
+    else{
+        if(pos==1)
+        deleteFromFirst();
+        else{
+            int count=1;
+            temp=head;
+            while(count<pos){
+                delLocation=temp;
+                temp=temp->next;
+                count++;
+            }
+            cout<<"Deleted :"<<temp->info<<endl;
+            delLocation->next=NULL;
+            free(temp);
+        }
+    }
+}
+ 
+ //Traversing linked list
 void printLinkedList(){
     struct node *temp;
     temp=head;
@@ -79,7 +150,6 @@ void printLinkedList(){
         temp=temp->next;
     }
     cout<<endl;
-
 }
 
 int main(){
@@ -93,7 +163,13 @@ int main(){
     printLinkedList();
     insertAtEnd(); // at end of linked list
     printLinkedList();
-    insertAtPos(4);
+    insertAtPos(2);   //insert at pos 2
+    printLinkedList();
+    deleteFromFirst(); // delete from first 
+    printLinkedList();
+    deleteFromLast();  //delete from last
+    printLinkedList();
+    deleteFromPosition(2);
     printLinkedList();
     return 0;
 }
