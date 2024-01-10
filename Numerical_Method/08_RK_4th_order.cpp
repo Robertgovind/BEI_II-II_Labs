@@ -14,7 +14,7 @@ int main(){
         m1=F(x,y);
         m2=F(x+h*0.5,y+m1*h*0.5);
         m3=F(x+h*0.5,y+m2*h*0.5);
-        m2=F(x+h,y+m3*h);
+        m4=F(x+h,y+m3*h);
         y=y+(h*(m1+2*(m2+m3)+m4))/6;
         x=x+h;
         cout<<"At x "<<x<<" y "<<y<<endl;

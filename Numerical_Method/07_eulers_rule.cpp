@@ -1,8 +1,9 @@
+//RK 1nd order method
 #include<iostream>
 #include<iostream>
 using namespace std;
 
-float df(float x,float y){
+float F(float x,float y){
     return (3*x*x+1);
 }
 
@@ -15,7 +16,7 @@ int main(){
     xnew=x0,ynew=y0;
     int count=1;
     while(xnew<x){
-        ynew=ynew+h*df(xnew,ynew);
+        ynew=ynew+h*F(xnew,ynew);
         xnew=xnew+h;
         cout<<"Iteration "<<count<<" xnew = "<<xnew<< " ynew = "<<ynew<<endl;
         count++;
