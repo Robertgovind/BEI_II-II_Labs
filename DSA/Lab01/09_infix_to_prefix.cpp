@@ -58,15 +58,15 @@ bool isOperator(char ch){
     }
 }
 
-void convert(string infix,string postfix){
+string convert(string infix,string postfix){
     for(int i=0;i<infix.length();i++){
         char ch=infix[i];
         if(isOperator(ch)){
-            if(ch=='('){
+            if(ch==')'){
                 push(ch);
             }
             else {
-              if(ch==')'){
+              if(ch=='('){
                 while(stack[tos]!='('){
                     postfix+=pop();
                 }
@@ -92,28 +92,23 @@ void convert(string infix,string postfix){
     while (stack[tos]!='&'){
         postfix+=pop();
        }
-    cout<<postfix<<endl;
-
-    
+    return postfix;
 }
 
-void reverseString(string str){
+string reverseString(string str){
     int s=0,e=str.length()-1;
     while(s<=e){
         swap(str[s++],str[e--]);
     }
+    return str;
 }
 int main(){
     string infix;
-    string postfix="";
+    string prefix="";
     cout<<"Enter infix expression :"<<endl;
     cin>>infix;
     tos+=1;
     stack[tos]='&';
-    reverseString(infix);
-    convert(infix,postfix);
-    reverseString(postfix);
-    for(int i=postfix.length()-1;i>=1;i--)
-    cout<<postfix[i];
+    cout<<reverseString(convert(reverseString(infix),prefix));
     return 0;
 }
