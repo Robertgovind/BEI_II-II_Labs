@@ -58,7 +58,8 @@ bool isOperator(char ch){
     }
 }
 
-string convert(string infix,string postfix){
+string convert(string infix){
+    string postfix="";
     for(int i=0;i<infix.length();i++){
         char ch=infix[i];
         if(isOperator(ch)){
@@ -104,11 +105,10 @@ string reverseString(string str){
 }
 int main(){
     string infix;
-    string prefix="";
     cout<<"Enter infix expression :"<<endl;
     cin>>infix;
     tos+=1;
     stack[tos]='&';
-    cout<<reverseString(convert(reverseString(infix),prefix));
+    cout<<reverseString(convert(reverseString(infix)));
     return 0;
 }

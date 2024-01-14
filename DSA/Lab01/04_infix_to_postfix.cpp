@@ -58,7 +58,8 @@ bool isOperator(char ch){
     }
 }
 
-void convert(string infix,string postfix){
+string convert(string infix){
+    string postfix="";
     for(int i=0;i<infix.length();i++){
         char ch=infix[i];
         if(isOperator(ch)){
@@ -73,7 +74,7 @@ void convert(string infix,string postfix){
                 pop();
                }
               else{
-                if(Precedence(stack[tos]<Precedence(ch))){
+                if(Precedence(stack[tos])<Precedence(ch)){
                     push(ch);
                 }
                 else{
@@ -92,18 +93,14 @@ void convert(string infix,string postfix){
     while (stack[tos]!='&'){
         postfix+=pop();
        }
-    cout<<postfix<<endl;
-
-    
+       return postfix;
 }
 int main(){
     string infix;
-    string postfix="";
     cout<<"Enter infix expression :"<<endl;
     cin>>infix;
     tos+=1;
     stack[tos]='&';
-    convert(infix,postfix);
-    cout<<postfix;
+    cout<<convert(infix)<<endl;
     return 0;
 }
