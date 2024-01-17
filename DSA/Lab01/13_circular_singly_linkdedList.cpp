@@ -6,7 +6,6 @@ struct node{
     int info;
     struct node *next;
 };
-
 struct node *ptr,*head,*last;
 
 // INSERTION OPERATIONS
@@ -26,7 +25,29 @@ void insertAtFirst(){
         last->next=item;
     }
 }
+void insertAtPos(int pos){
+    if(pos==0){
+        insertAtFirst();
+        return;
+    }
 
+    int count=1;
+    struct node *temp,*item;
+    item=(node*)malloc(sizeof(node));
+    cout<<"Enter the data :"<<endl;
+    cin>>item->info;
+    temp=head;
+    while(count<pos){
+        temp=temp->next;
+        if(temp->next == NULL){
+            cout<<"Position not found!"<<endl;
+            return;
+        }
+        count++;
+    }
+    item->next=temp->next;
+    temp->next=item;
+}
 void insertAtEnd(){
     struct node *temp, *item;
     item=(node*)malloc(sizeof(node));
@@ -43,9 +64,7 @@ void insertAtEnd(){
         last=item;
         last->next=head;
     }
-
 }
-
 //DELETION OPERATIONS
 void deleteFromFirst(){
     struct node *temp;
@@ -66,9 +85,34 @@ void deleteFromFirst(){
         last->next=head;
         free(temp);
     }
-
 }
-
+void deleteFromPosition(int pos){
+    struct node *temp,*delLocation;
+    if(head==NULL){
+        cout<<"List underflow!"<<endl;
+        return ;
+    }
+    else if (head->next == NULL){
+        head=NULL;
+        free(head);
+    }
+    else{
+        if(pos==1)
+        deleteFromFirst();
+        else{
+            int count=1;
+            temp=head;
+            while(count<pos){
+                delLocation=temp;
+                temp=temp->next;
+                count++;
+            }
+            cout<<"Deleted :"<<temp->info<<endl;
+            delLocation->next=NULL;
+            free(temp);
+        }
+    }
+}
 void deleteFromLast(){
     struct node *temp,*delLocation;
     
@@ -95,8 +139,6 @@ void deleteFromLast(){
         free(temp);
     }
 }
-
- //Traversing linked list
 void printLinkedList(){
     struct node *temp;
     temp=head;
@@ -107,7 +149,6 @@ void printLinkedList(){
     }while (temp != head);
     cout<<endl;
 }
-
 int main(){
     //creating a first node
     head=NULL;
