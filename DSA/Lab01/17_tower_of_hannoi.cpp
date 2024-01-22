@@ -6,8 +6,10 @@ void towerOfHannoi(string src, string dest, string aux, int n){
     return ;
 
     towerOfHannoi(src,aux,dest,n-1);
+    cout<<"first call"<<endl;
     cout<<"Move from "<<src<<" to "<<dest<<endl;
     towerOfHannoi(aux,dest,src,n-1);
+    cout<<"second call "<<endl;
 
 }
 
