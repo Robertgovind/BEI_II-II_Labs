@@ -33,6 +33,9 @@ node* createTree(node* r){
 
     return r;
 }
+void preOrderTraversal(){
+    
+}
 
 void levelOrderTraversal(node* root){
     queue<node*> tree;
