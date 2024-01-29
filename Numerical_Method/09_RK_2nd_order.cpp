@@ -15,8 +15,8 @@ int main(){
         m1=F(x,y);
         x=x+h;
         m2=F(x,y+h*m1);
-        y=y+h*(m1+m2);
-
+        y=y+h*(m1+m2)/2;
     }
+    cout<<y<<endl;
     return 0;
 }

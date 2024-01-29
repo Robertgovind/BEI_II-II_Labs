@@ -1,3 +1,4 @@
+//AVL Tree
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
@@ -14,6 +15,19 @@ class node{
         this->right=NULL;
     }
 };
+
+int heightOfTree(node* n){
+    node* temp=n;
+    int height=0;
+    while(n != NULL){
+        height++;
+        if(n->left == NULL)
+        n = n->right;
+
+        n = n->left;
+    }
+    return height;
+}
 
 node* createTree(node* r){
     cout<<"Enter the data :"<<endl;
@@ -71,6 +85,7 @@ int main(){
     root = createTree(root);
     cout<<"Tree ir represented as :"<<endl;
     levelOrderTraversal(root);
+    
     return 0;
 }
 
