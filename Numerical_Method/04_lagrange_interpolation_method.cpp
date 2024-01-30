@@ -2,6 +2,7 @@
 using namespace std;
 
 int main(){
+    //Input : 1 1 2 1.414 4 1.732 5 2.00 7 2.6 (x[i] f[i])
     int n;
     cout<<"Enter number of data :"<<endl;
     cin>>n;

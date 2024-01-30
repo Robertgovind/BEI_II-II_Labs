@@ -2,13 +2,15 @@
 #include<math.h>
 using namespace std;
 float fun(float x){
-    //  return x*x*x-3*x*x+x+1;
-    //  return (sin(x)-2*x+1);
-    return 3*x-cos(x)-1;
+    //return x*x*x-3*x*x+x+1;
+    return (sin(x)-2*x+1);
+    //return 3*x-cos(x)-1;
     // return x*x*x-4*x-9;
  }
 
 int main(){
+    //Input : 0 1 0.0001
+    //Root = 0.887862
     float x0,x1,x2,e;
     cout<<"Enter x0, x1 and e : "<<endl;
     cin>>x0>>x1>>e;

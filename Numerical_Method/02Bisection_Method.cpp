@@ -7,6 +7,8 @@ float fun(float x){
 }
 
 int main(){
+    //Input : 1 3 0.0001
+    //Root : 2.70648
     int iterations=1;
     float x0,x1,x2,e,f0,f1;
     cout<<"Enter initial guess x0, x1 and e : "<<endl;

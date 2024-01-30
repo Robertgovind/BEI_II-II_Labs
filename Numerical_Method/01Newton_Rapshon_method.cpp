@@ -10,6 +10,8 @@ float dfun(float x){
     return 3*x*x-4;
 }
 int main(){
+    //Input : 2 0.0001
+    //Ans : 2.70653
     int iterations=1;
     float x0,e,x1;
     cout<<"Enter x0 and stopping condition : "<<endl;
