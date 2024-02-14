@@ -1,91 +1,165 @@
-//AVL Tree
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
 
-class node{
+   class Node {
     public:
-    int data;
-    node* left;
-    node* right;
+     int value;
+     Node* left;
+     Node* right;
+     int height;
 
-    node(int data){
-        this->data=data;
-        this->left=NULL;
-        this->right=NULL;
+     Node(int value) {
+      this->value = value;
     }
-};
 
-int heightOfTree(node* n){
-    node* temp=n;
-    int height=0;
-    while(n != NULL){
-        height++;
-        if(n->left == NULL)
-        n = n->right;
-
-        n = n->left;
+     int getValue() {
+      return value;
     }
-    return height;
-}
+  };
 
-node* createTree(node* r){
-    cout<<"Enter the data :"<<endl;
-    int data;
-    cin>>data;
+   Node root;
 
-    if(data == -5)  //Consider -5 as null
-    return NULL;
+   AVL() {
 
-    r=new node(data);
+  }
 
+   int height() {
+    return height(root);
+  }
+   int height(Node* node) {
+    if (node == null) {
+      return -1;
+    }
+    return node->height;
+  }
+  
+   void insert(int value) {
+    root = insert(value, root);
+  }
 
-    cout<<"Enter data for left of "<<data<<endl;
-    r->left = createTree(r->left);
-    cout<<"Enter data for right of "<<data<<endl;
-    r->right = createTree(r->right);
+   Node insert(int value, Node node) {
+    if (node == null) {
+      node = new Node(value);
+      return node;
+    }
 
-    return r;
-}
+    if (value < node.value) {
+      node.left = insert(value, node.left);
+    }
 
-void preOrderTraversal(){
+    if (value > node.value) {
+      node.right = insert(value, node.right);
+    }
+
+    node.height = Math.max(height(node.left), height(node.right)) + 1;
+    return rotate(node);
+  }
+
+  private Node rotate(Node node) {
+    if (height(node.left) - height(node.right) > 1) {
+      // left heavy
+      if(height(node.left.left) - height(node.left.right) > 0) {
+        // left left case
+        return rightRotate(node);
+      }
+      if(height(node.left.left) - height(node.left.right) < 0) {
+        // left right case
+        node.left = leftRotate(node.left);
+        return rightRotate(node);
+      }
+    }
+
+    if (height(node.left) - height(node.right) < -1) {
+      // right heavy
+      if(height(node.right.left) - height(node.right.right) < 0) {
+        // right right case
+        return leftRotate(node);
+      }
+      if(height(node.right.left) - height(node.right.right) > 0) {
+        // left right case
+        node.right = rightRotate(node.right);
+        return leftRotate(node);
+      }
+    }
+
+    return node;
+  }
+
+  public Node rightRotate(Node p) {
+    Node c = p.left;
+    Node t = c.right;
+
+    c.right = p;
+    p.left = t;
     
-}
+    p.height = Math.max(height(p.left), height(p.right) + 1);
+    c.height = Math.max(height(c.left), height(c.right) + 1);
 
-void levelOrderTraversal(node* root){
-    queue<node*> tree;
-    tree.push(root);
-    tree.push(NULL);
+    return c;
+  }
 
-    while(!tree.empty()){
-        node* temp = tree.front();
-        tree.pop();
+  public Node leftRotate(Node c) {
+    Node p = c.right;
+    Node t = p.left;
 
-        if(temp == NULL){
-            cout<<endl;
-            if(!tree.empty()){
-                tree.push(NULL);
-            }
-        }
-        else{
-            cout<<temp->data<<" ";
-            if(temp->left)
-            tree.push(temp->left);
-            if(temp->right)
-            tree.push(temp->right);
-        }
-    }
-}
-
-int main(){
-    node* root;
-
-    //data : 3 5 12 -5 -5 13 -5 -5 7 18 -5 -5 24 -5 -5
-
-    root = createTree(root);
-    cout<<"Tree ir represented as :"<<endl;
-    levelOrderTraversal(root);
+    p.left = c;
+    c.right = t;
     
-    return 0;
-}
+    p.height = Math.max(height(p.left), height(p.right) + 1);
+    c.height = Math.max(height(c.left), height(c.right) + 1);
 
+    return p;
+  }
+
+  public void populate(int[] nums) {
+    for (int i = 0; i < nums.length; i++) {
+      this.insert(nums[i]);
+    }
+  }
+
+  public void populatedSorted(int[] nums) {
+    populatedSorted(nums, 0, nums.length);
+  }
+
+  private void populatedSorted(int[] nums, int start, int end) {
+    if (start >= end) {
+      return;
+    }
+
+    int mid = (start + end) / 2;
+
+    this.insert(nums[mid]);
+    populatedSorted(nums, start, mid);
+    populatedSorted(nums, mid + 1, end);
+  }
+
+  public void display() {
+    display(this.root, "Root Node: ");
+  }
+
+  private void display(Node node, String details) {
+    if (node == null) {
+      return;
+    }
+    System.out.println(details + node.value);
+    display(node.left, "Left child of " + node.value + " : ");
+    display(node.right, "Right child of " + node.value + " : ");
+  }
+
+  public boolean isEmpty() {
+    return root == null;
+  }
+
+  public boolean balanced() {
+    return balanced(root);
+  }
+
+  private boolean balanced(Node node) {
+    if (node == null) {
+      return true;
+    }
+    return Math.abs(height(node.left) - height(node.right)) <= 1 && balanced(node.left) && balanced(node.right);
+  }
+
+}
